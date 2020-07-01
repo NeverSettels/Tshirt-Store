@@ -12,7 +12,9 @@ export default function ShirtList(props) {
           <p>{shirt.desc}</p>
           <h4>Cost: ${shirt.price}</h4>
           <h5>Stock: {shirt.quantity > 0 ? shirt.quantity : <strong>Out of stock</strong>}</h5>
-          <button onClick={() => buy(shirt.id)}>buy</button>
+          <div className="buy">
+            {shirt.quantity > 0 ? <button onClick={() => buy(shirt.id)}>buy</button> : <p> out of stock</p>}
+          </div>
         </div>
       )
       ) : <h2>No shirts yet!</h2>}

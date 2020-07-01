@@ -20,8 +20,6 @@ export default class ShirtControl extends Component {
 
   onNewShirtCreation = (newShirt) => {
     const newMasterShirtList = this.state.masterShirtList.concat(newShirt);
-    console.log(newMasterShirtList);
-
     this.setState({
       masterShirtList: newMasterShirtList,
       formVisibleOnPage: false
@@ -29,8 +27,16 @@ export default class ShirtControl extends Component {
   }
 
   buy = (id) => {
-    let boughtShirt = this.state.masterShirtList.find(shirt => shirt.id === id)
-    console.log(boughtShirt)
+    this.setState(state => {
+      const masterShirtList = state.masterShirtList.map(element => {
+        if (element.id === id && element.quantity > 0) {
+          return { ...element, quantity: element.quantity - 1 }
+        } else {
+          return element
+        }
+      });
+      return { masterShirtList }
+    })
   }
   render() {
     let currentlyVisibleState = null;
