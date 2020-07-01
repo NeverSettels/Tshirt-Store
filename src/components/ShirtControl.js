@@ -7,7 +7,8 @@ export default class ShirtControl extends Component {
     super(props);
     this.state = {
       formVisibleOnPage: false,
-      masterShirtList: []
+      masterShirtList: [],
+      editing: false
     };
   }
 
@@ -24,6 +25,10 @@ export default class ShirtControl extends Component {
       masterShirtList: newMasterShirtList,
       formVisibleOnPage: false
     });
+  }
+
+  handleEditClick = () => {
+    this.setState({ editing: true });
   }
 
   buy = (id) => {
@@ -57,14 +62,32 @@ export default class ShirtControl extends Component {
     this.setState({ masterShirtList: newMasterShirtList })
   }
 
+
+
+  handleEdit = (editedShirt, id) => {
+    this.setState(state => {
+      const masterShirtList = state.masterShirtList.map(element => {
+        if (element.id === id && element.quantity > 0) {
+          return { ...editedShirt, id: id }
+        } else {
+          return element
+        }
+      });
+      return { masterShirtList }
+    })
+
+  }
+
   render() {
     let currentlyVisibleState = null;
     let buttonText = null; // new code
     if (this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewShirt onNewShirtCreation={this.onNewShirtCreation} />
       buttonText = "See some shirts"; // new code
+    } else if (this.state.editing) {
+      currentlyVisibleState = <NewShirt handleEdit={this.handleEdit} editing={this.state.editing} />
     } else {
-      currentlyVisibleState = <ShirtList shirtList={this.state.masterShirtList} buy={this.buy} stock={this.stock} handleDelete={this.handleDelete} />;
+      currentlyVisibleState = <ShirtList shirtList={this.state.masterShirtList} buy={this.buy} stock={this.stock} handleDelete={this.handleDelete} handleEditClick={this.handleEditClick} />;
       buttonText = "Add Shirt"; // new code
     }
     return (
@@ -74,6 +97,5 @@ export default class ShirtControl extends Component {
       </React.Fragment>
     );
   }
-
-
 }
+

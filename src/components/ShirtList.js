@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function ShirtList(props) {
-  const { shirtList, buy, stock, handleDelete } = props
+  const { shirtList, buy, stock, handleDelete, handleEditClick } = props
   return (
     <div>
       <h1>Shirts! </h1>
@@ -17,6 +17,7 @@ export default function ShirtList(props) {
           </div>
           <button onClick={() => stock(shirt.id)}>Add Stock</button>
           <button onClick={() => handleDelete(shirt.id)}>Delete</button>
+          <button onClick={handleEditClick}>Edit</button>
         </div>
       )
       ) : <h2>No shirts yet!</h2>}

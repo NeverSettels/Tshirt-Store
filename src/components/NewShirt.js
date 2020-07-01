@@ -18,6 +18,7 @@ export default function NewShirt(props) {
         id: v4()
       });
   }
+
   return (
     <form onSubmit={handleNewShirtform}>
       <input type="text" name="tshirt" placeholder="Product name" />
@@ -32,6 +33,7 @@ export default function NewShirt(props) {
       </select>
       <input type="number" name="quantity" placeholder="Product Quantity" />
       <button type="submit">Add shirt</button>
+      <button onclick={() => props.handleEdit()}>Add shirt</button>
     </form>
   )
 }
