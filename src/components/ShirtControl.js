@@ -38,6 +38,19 @@ export default class ShirtControl extends Component {
       return { masterShirtList }
     })
   }
+
+  stock = (id) => {
+    this.setState(state => {
+      const masterShirtList = state.masterShirtList.map(element => {
+        if (element.id === id) {
+          return { ...element, quantity: element.quantity + 10 }
+        } else {
+          return element
+        }
+      });
+      return { masterShirtList }
+    })
+  }
   render() {
     let currentlyVisibleState = null;
     let buttonText = null; // new code
@@ -45,7 +58,7 @@ export default class ShirtControl extends Component {
       currentlyVisibleState = <NewShirt onNewShirtCreation={this.onNewShirtCreation} />
       buttonText = "See some shirts"; // new code
     } else {
-      currentlyVisibleState = <ShirtList shirtList={this.state.masterShirtList} buy={this.buy} />;
+      currentlyVisibleState = <ShirtList shirtList={this.state.masterShirtList} buy={this.buy} stock={this.stock} />;
       buttonText = "Add Shirt"; // new code
     }
     return (
