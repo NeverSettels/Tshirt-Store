@@ -11,6 +11,7 @@ export default function NewShirt(props) {
       {
         tshirt: event.target.tshirt.value,
         desc: event.target.desc.value,
+        img: event.target.img.value,
         price: event.target.price.value,
         size: event.target.size.value,
         quantity: event.target.quantity.value,
@@ -20,6 +21,7 @@ export default function NewShirt(props) {
   return (
     <form onSubmit={handleNewShirtform}>
       <input type="text" name="tshirt" placeholder="Product name" />
+      <input type="url" name="img" placeholder="Image link" />
       <textarea type="text" name="desc" placeholder="Product Description" />
       <input type="number" name="price" placeholder="Product Price" />
       <select name="size" id="tSize">

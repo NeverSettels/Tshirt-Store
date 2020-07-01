@@ -28,6 +28,10 @@ export default class ShirtControl extends Component {
     });
   }
 
+  buy = (id) => {
+    let boughtShirt = this.state.masterShirtList.find(shirt => shirt.id === id)
+    console.log(boughtShirt)
+  }
   render() {
     let currentlyVisibleState = null;
     let buttonText = null; // new code
@@ -35,7 +39,7 @@ export default class ShirtControl extends Component {
       currentlyVisibleState = <NewShirt onNewShirtCreation={this.onNewShirtCreation} />
       buttonText = "See some shirts"; // new code
     } else {
-      currentlyVisibleState = <ShirtList shirtList={this.state.masterShirtList} />;
+      currentlyVisibleState = <ShirtList shirtList={this.state.masterShirtList} buy={this.buy} />;
       buttonText = "Add Shirt"; // new code
     }
     return (
