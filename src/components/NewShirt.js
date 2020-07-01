@@ -1,5 +1,6 @@
 import React from 'react';
 import { v4 } from 'uuid';
+import PropTypes from "prop-types"
 
 
 
@@ -32,7 +33,7 @@ export default function NewShirt(props) {
     </form>
   )
 }
-NewTicketForm.propTypes = {
+NewShirt.propTypes = {
   onNewShirtCreation: PropTypes.func
 };
 

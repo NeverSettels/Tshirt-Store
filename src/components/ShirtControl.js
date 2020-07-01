@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import NewShirt from './NewShirt'
+import ShirtList from './ShirtList'
 
-export default class ShirtControl extends React.Component {
+export default class ShirtControl extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,7 +11,7 @@ export default class ShirtControl extends React.Component {
     };
   }
 
-  handleClick() {
+  handleClick = () => {
     this.setState(lastState => ({
       formVisibleOnPage: !lastState.formVisibleOnPage
     }));
