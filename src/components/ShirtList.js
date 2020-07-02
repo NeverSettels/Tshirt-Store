@@ -11,13 +11,12 @@ export default function ShirtList(props) {
             <img src={shirt.img} alt={shirt.desc} />
             <div>
               <h3>{shirt.tshirt}</h3>
-              <p>{shirt.desc}</p>
-              <h4>Cost: ${shirt.price}</h4>
-              <h5>Stock: {shirt.quantity > 0 ? shirt.quantity : <strong>Out of stock</strong>}</h5>
+              <p><strong>Description:</strong><br /> {shirt.desc}</p>
+              <h4> <strong>Cost:</strong> ${shirt.price}</h4>
+              <h5><strong>Stock:</strong> {shirt.quantity > 0 ? shirt.quantity : <strong>Out of stock</strong>}</h5>
             </div>
             <div className="buttons">
               {shirt.quantity > 0 ? <button className="buy" onClick={() => buy(shirt.id)}>buy</button> : <button className="buy" onClick={() => buy(shirt.id)} disabled>buy</button>}
-
               <button className="add" onClick={() => stock(shirt.id)}>Add Stock</button>
               <button className="delete" onClick={() => handleDelete(shirt.id)}>Delete</button>
               <button className="edit" onClick={() => handleEditClick(shirt.id)}>Edit</button>

@@ -46,13 +46,15 @@
   justify-content: center;
   flex-flow: column;
   align-items: center;
-  box-shadow: 5px 10px 8px #888888;
+  box-shadow: 5px 10px 8px rgba(73, 73, 73, 0.7);
 }
 
 .shirt-card img{
   max-width: 80%;
 }
 .shirt-card div{
+  width: 80%;
+  text-align: left;
   padding: .5rem;
 }
 
@@ -68,6 +70,10 @@ button{
  border-radius: 5px;
  margin: 1rem;
  font-weight: 700;
+}
+.buttons{
+  display: flex;
+  justify-content: space-evenly;
 }
 .add{
   background-color: none;
@@ -136,4 +142,18 @@ button{
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+button:disabled:hover,
+button[disabled]:hover{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }
