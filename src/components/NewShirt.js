@@ -32,21 +32,23 @@ export default function NewShirt(props) {
       }, id);
   }
   return (
-    <form onSubmit={props.editing ? ((event) => handleShirtEdit(event, props.id)) : handleNewShirtform}>
-      <input type="text" name="tshirt" placeholder="Product name" />
-      <input type="url" name="img" placeholder="Image link" />
-      <textarea type="text" name="desc" placeholder="Product Description" />
-      <input type="number" name="price" placeholder="Product Price" />
-      <select name="size" id="tSize">
-        <option value="l">L</option>
-        <option value="m">M</option>
-        <option value="s">S</option>
-        <option value="xs">XS</option>
-      </select>
-      <input type="number" name="quantity" placeholder="Product Quantity" />
-      {!props.editing ? <button type="submit">Add shirt</button> :
-        <button type="submit">edit</button>}
-    </form>
+    <div className="form-container">
+      <form className="shirt-form" onSubmit={props.editing ? ((event) => handleShirtEdit(event, props.id)) : handleNewShirtform}>
+        <input type="text" name="tshirt" placeholder="Product name" />
+        <input type="url" name="img" placeholder="Image link" />
+        <textarea type="text" name="desc" placeholder="Product Description" />
+        <input type="number" name="price" placeholder="Product Price" />
+        <select name="size" id="tSize">
+          <option value="l">L</option>
+          <option value="m">M</option>
+          <option value="s">S</option>
+          <option value="xs">XS</option>
+        </select>
+        <input type="number" name="quantity" placeholder="Product Quantity" />
+        {!props.editing ? <button className="add" type="submit">Add shirt</button> :
+          <button className="edit" type="submit">edit</button>}
+      </form>
+    </div>
   )
 }
 NewShirt.propTypes = {

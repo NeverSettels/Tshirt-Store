@@ -36,3 +36,104 @@
     transform: rotate(360deg);
   }
 }
+.shirt-card{
+  width: 30vw;
+  border: solid gray 1px;
+  border-radius: 5px;
+  background: lavender;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+  box-shadow: 5px 10px 8px #888888;
+}
+
+.shirt-card img{
+  max-width: 80%;
+}
+.shirt-card div{
+  padding: .5rem;
+}
+
+.shirt-container{
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: space-between;
+}
+button{
+ padding: .5rem;
+ border-radius: 5px;
+ margin: 1rem;
+ font-weight: 700;
+}
+.add{
+  background-color: none;
+  border: solid 2px green;
+  color: green;
+  transition: all .5s linear;
+
+}
+.add:hover{
+ background-color: green;
+ color: white
+}
+.delete{
+  background-color: none;
+  border: solid 2px red;
+  color: red;
+  transition: all .5s linear;
+
+}
+.delete:hover{
+ background-color: red;
+ color: white
+}
+
+.buy{
+  background-color: none;
+  border: solid 2px rgb(62, 117, 218);
+  color: rgb(62, 117, 218);
+  transition: all .5s linear;
+
+}
+.buy:hover{
+ background-color: rgb(62, 117, 218);
+ color: white
+}
+.edit{
+  background-color: none;
+  border: solid 2px goldenrod;
+  color: goldenrod;
+  transition: all .5s linear;
+
+}
+.edit:hover{
+ background-color: goldenrod;
+ color: white
+}
+
+.shirt-form{
+  width: 50vw;
+  border: solid gray 1px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+}
+
+.shirt-form input, select,textarea{
+  width: 80%;
+  margin: 1rem;
+
+}
+.form-container{
+  margin: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

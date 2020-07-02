@@ -80,9 +80,10 @@ export default class ShirtControl extends Component {
     let buttonText = null; // new code
     if (this.state.formVisibleOnPage) {
       currentlyVisibleState = <NewShirt onNewShirtCreation={this.onNewShirtCreation} />
-      buttonText = "See some shirts"; // new code
+      buttonText = "cancel"; // new code
     } else if (this.state.editing) {
       currentlyVisibleState = <NewShirt handleEditingTicketInList={this.handleEditingTicketInList} editing={this.state.editing} id={this.state.editId} />
+      buttonText = "cancel";
     } else {
       currentlyVisibleState = <ShirtList shirtList={this.state.masterShirtList} buy={this.buy} stock={this.stock} handleDelete={this.handleDelete} handleEditClick={this.handleEditClick} />;
       buttonText = "Add Shirt"; // new code
@@ -90,7 +91,7 @@ export default class ShirtControl extends Component {
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        <button onClick={this.handleClick}>{buttonText}</button>
+        <button className={this.state.editing || this.state.formVisibleOnPage ? "delete" : "add"} onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
     );
   }
