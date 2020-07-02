@@ -8,7 +8,8 @@ export default class ShirtControl extends Component {
     this.state = {
       formVisibleOnPage: false,
       masterShirtList: [],
-      editing: false
+      editing: false,
+      editId: null
     };
   }
 
@@ -27,8 +28,8 @@ export default class ShirtControl extends Component {
     });
   }
 
-  handleEditClick = () => {
-    this.setState({ editing: true });
+  handleEditClick = (id) => {
+    this.setState({ editing: true, editId: id });
   }
 
   buy = (id) => {
@@ -63,19 +64,15 @@ export default class ShirtControl extends Component {
   }
 
 
-
-  handleEdit = (editedShirt, id) => {
-    this.setState(state => {
-      const masterShirtList = state.masterShirtList.map(element => {
-        if (element.id === id && element.quantity > 0) {
-          return { ...editedShirt, id: id }
-        } else {
-          return element
-        }
-      });
-      return { masterShirtList }
-    })
-
+  handleEditingTicketInList = (shirtToEdit, id) => {
+    const editedMasterShirtList = this.state.masterShirtList
+      .filter(shirt => shirt.id !== id)
+      .concat(shirtToEdit);
+    this.setState({
+      masterShirtList: editedMasterShirtList,
+      editing: false,
+      editId: null
+    });
   }
 
   render() {
@@ -85,7 +82,7 @@ export default class ShirtControl extends Component {
       currentlyVisibleState = <NewShirt onNewShirtCreation={this.onNewShirtCreation} />
       buttonText = "See some shirts"; // new code
     } else if (this.state.editing) {
-      currentlyVisibleState = <NewShirt handleEdit={this.handleEdit} editing={this.state.editing} />
+      currentlyVisibleState = <NewShirt handleEditingTicketInList={this.handleEditingTicketInList} editing={this.state.editing} id={this.state.editId} />
     } else {
       currentlyVisibleState = <ShirtList shirtList={this.state.masterShirtList} buy={this.buy} stock={this.stock} handleDelete={this.handleDelete} handleEditClick={this.handleEditClick} />;
       buttonText = "Add Shirt"; // new code
@@ -99,3 +96,13 @@ export default class ShirtControl extends Component {
   }
 }
 
+// handleEditingTicketInList = (ticketToEdit) => {
+//   const editedMasterTicketList = this.state.masterTicketList
+//     .filter(ticket => ticket.id !== this.state.selectedTicket.id)
+//     .concat(ticketToEdit);
+//   this.setState({
+//       masterTicketList: editedMasterTicketList,
+//       editing: false,
+//       selectedTicket: null
+//     });
+// }

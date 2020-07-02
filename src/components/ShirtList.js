@@ -17,7 +17,7 @@ export default function ShirtList(props) {
           </div>
           <button onClick={() => stock(shirt.id)}>Add Stock</button>
           <button onClick={() => handleDelete(shirt.id)}>Delete</button>
-          <button onClick={handleEditClick}>Edit</button>
+          <button onClick={() => handleEditClick(shirt.id)}>Edit</button>
         </div>
       )
       ) : <h2>No shirts yet!</h2>}
