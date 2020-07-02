@@ -137,6 +137,11 @@ button{
   margin: 1rem;
 
 }
+.desc{
+  overflow: auto;
+ max-height: 20vh;
+}
+
 .form-container{
   margin: 1rem;
   width: 100%;

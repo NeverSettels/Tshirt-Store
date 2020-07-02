@@ -11,7 +11,7 @@ export default function ShirtList(props) {
             <img src={shirt.img} alt={shirt.desc} />
             <div>
               <h3>{shirt.tshirt}</h3>
-              <p><strong>Description:</strong><br /> {shirt.desc}</p>
+              <p className="desc"><strong>Description:</strong><br /> {shirt.desc}</p>
               <h4> <strong>Cost:</strong> ${shirt.price}</h4>
               <h5><strong>Stock:</strong> {shirt.quantity > 0 ? shirt.quantity : <strong>Out of stock</strong>}</h5>
             </div>
