@@ -33,7 +33,9 @@ export default function NewShirt(props) {
   }
   return (
     <div className="form-container">
+
       <form className="shirt-form" onSubmit={props.editing ? ((event) => handleShirtEdit(event, props.id)) : handleNewShirtform}>
+        <h2>Add a product</h2>
         <input type="text" name="tshirt" placeholder="Product name" />
         <input type="url" name="img" placeholder="Image link" />
         <textarea type="text" name="desc" placeholder="Product Description" />
