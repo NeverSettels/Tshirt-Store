@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import NewShirt from './NewShirt'
 import ShirtList from './ShirtList'
 
-export default class ShirtControl extends Component {
+
+class ShirtControl extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,13 +21,14 @@ export default class ShirtControl extends Component {
     }));
   }
 
+  // {...newShirt}={tshirt, price, img, desc, size, quantity}
+  // let {tshirt, price, img, desc, size, quantity] = newShirt
 
   onNewShirtCreation = (newShirt) => {
-    const newMasterShirtList = this.state.masterShirtList.concat(newShirt);
-    this.setState({
-      masterShirtList: newMasterShirtList,
-      formVisibleOnPage: false
-    });
+    const { dispatch } = this.props
+    const action = { type: "ADD_SHIRT", ...newShirt }
+    dispatch(action);
+    this.setState({ formVisibleOnPage: false })
   }
 
   handleEditClick = (id) => {
@@ -97,13 +100,5 @@ export default class ShirtControl extends Component {
   }
 }
 
-// handleEditingTicketInList = (ticketToEdit) => {
-//   const editedMasterTicketList = this.state.masterTicketList
-//     .filter(ticket => ticket.id !== this.state.selectedTicket.id)
-//     .concat(ticketToEdit);
-//   this.setState({
-//       masterTicketList: editedMasterTicketList,
-//       editing: false,
-//       selectedTicket: null
-//     });
-// }
+ShirtControl = connect()(ShirtControl)
+export default ShirtControl
