@@ -21,12 +21,8 @@ class ShirtControl extends Component {
     dispatch(action)
   }
 
-  // {...newShirt}={tshirt, price, img, desc, size, quantity}
-  // let {tshirt, price, img, desc, size, quantity] = newShirt
-
   onNewShirtCreation = (newShirt) => {
     const { dispatch } = this.props
-    //  const { tshirt, price, img, desc, size, quantity, id } = newShirt
     const action = { type: "ADD_TSHIRT", ...newShirt }
     dispatch(action);
     const action2 = {
@@ -79,7 +75,6 @@ class ShirtControl extends Component {
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
-    console.log("====>", this.props)
     if (this.props.formVisibleOnPage) {
       currentlyVisibleState = <NewShirt onNewShirtCreation={this.onNewShirtCreation} />
       buttonText = "cancel";
