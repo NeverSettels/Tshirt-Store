@@ -37,16 +37,12 @@ class ShirtControl extends Component {
   }
 
   buy = (id) => {
-    this.setState(state => {
-      const masterShirtList = state.masterShirtList.map(element => {
-        if (element.id === id && element.quantity > 0) {
-          return { ...element, quantity: element.quantity - 1 }
-        } else {
-          return element
-        }
-      });
-      return { masterShirtList }
-    })
+    const { dispatch } = this.props
+    const action = {
+      type: "BUY",
+      id
+    }
+    dispatch(action)
   }
 
   stock = (id) => {
@@ -63,8 +59,13 @@ class ShirtControl extends Component {
   }
 
   handleDelete = (id) => {
-    const newMasterShirtList = this.state.masterShirtList.filter(shirt => shirt.id !== id)
-    this.setState({ masterShirtList: newMasterShirtList })
+    const { dispatch } = this.props;
+    const action = {
+      type: "DELETE_TSHIRT",
+      id
+    }
+    dispatch(action)
+
   }
 
 
