@@ -2,12 +2,15 @@ import React from 'react'
 
 export default function ShirtList(props) {
   const { shirtList, buy, stock, handleDelete, handleEditClick } = props
+  console.log(Object.values(shirtList));
+
   return (
     <>
       <h1>Shirts! </h1>
       <div className="shirt-container">
-        {shirtList.length > 0 ? shirtList.map(shirt => (
+        {Object.values(shirtList).map(shirt => (
           <div className="shirt-card" key={shirt.id}>
+            {console.log(shirt.id)}
             <img src={shirt.img} alt={shirt.desc} />
             <div>
               <h3>{shirt.tshirt}</h3>
@@ -23,7 +26,7 @@ export default function ShirtList(props) {
             </div>
           </div>
         )
-        ) : <h2>No shirts yet!</h2>}
+        )}
 
       </div>
     </>

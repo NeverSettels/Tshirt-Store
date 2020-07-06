@@ -9,7 +9,6 @@ class ShirtControl extends Component {
     super(props);
     this.state = {
       formVisibleOnPage: false,
-      masterShirtList: [],
       editing: false,
       editId: null
     };
@@ -26,13 +25,15 @@ class ShirtControl extends Component {
 
   onNewShirtCreation = (newShirt) => {
     const { dispatch } = this.props
-    const action = { type: "ADD_SHIRT", ...newShirt }
+    //  const { tshirt, price, img, desc, size, quantity, id } = newShirt
+    const action = { type: "ADD_TSHIRT", ...newShirt }
     dispatch(action);
     this.setState({ formVisibleOnPage: false })
   }
 
   handleEditClick = (id) => {
-    this.setState({ editing: true, editId: id });
+    const editId = id
+    this.setState({ editing: true, editId });
   }
 
   buy = (id) => {
@@ -67,15 +68,12 @@ class ShirtControl extends Component {
   }
 
 
-  handleEditingTicketInList = (shirtToEdit, id) => {
-    const editedMasterShirtList = this.state.masterShirtList
-      .filter(shirt => shirt.id !== id)
-      .concat(shirtToEdit);
-    this.setState({
-      masterShirtList: editedMasterShirtList,
-      editing: false,
-      editId: null
-    });
+  handleEditingTicketInList = (shirtToEdit) => {
+    const { dispatch } = this.props
+    //  const { tshirt, price, img, desc, size, quantity, id } = newShirt
+    const action = { type: "ADD_TSHIRT", ...shirtToEdit }
+    dispatch(action);
+    this.setState({ formVisibleOnPage: false, editing: false })
   }
 
   render() {
@@ -88,7 +86,7 @@ class ShirtControl extends Component {
       currentlyVisibleState = <NewShirt handleEditingTicketInList={this.handleEditingTicketInList} editing={this.state.editing} id={this.state.editId} />
       buttonText = "cancel";
     } else {
-      currentlyVisibleState = <ShirtList shirtList={this.state.masterShirtList} buy={this.buy} stock={this.stock} handleDelete={this.handleDelete} handleEditClick={this.handleEditClick} />;
+      currentlyVisibleState = <ShirtList shirtList={this.props.masterShirtList} buy={this.buy} stock={this.stock} handleDelete={this.handleDelete} handleEditClick={this.handleEditClick} />;
       buttonText = "Add Shirt"; // new code
     }
     return (
@@ -99,6 +97,8 @@ class ShirtControl extends Component {
     );
   }
 }
-
-ShirtControl = connect()(ShirtControl)
+const mapStateToProps = state => {
+  return { masterShirtList: state }
+}
+ShirtControl = connect(mapStateToProps)(ShirtControl)
 export default ShirtControl

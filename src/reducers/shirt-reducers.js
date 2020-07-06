@@ -6,10 +6,14 @@ export default (state = {}, action) => {
     case "ADD_TSHIRT":
 
       return Object.assign({}, state, {
-        [id]: { tshirt, price, img, desc, size, quantity }
+        [id]: { tshirt, price, img, desc, size, quantity, id }
       },
       )
 
+    case 'DELETE_TICKET':
+      const newState = { ...state };
+      delete newState[id];
+      return newState;
     default:
       return state;
   }

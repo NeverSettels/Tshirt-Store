@@ -7,7 +7,10 @@ import reducer from './reducers/shirt-reducers'
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(reducer)
+const store = createStore(reducer);
+store.subscribe(() =>
+  console.log(store.getState())
+);
 
 ReactDOM.render(
   <Provider store={store}>

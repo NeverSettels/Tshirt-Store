@@ -29,7 +29,7 @@ export default function NewShirt(props) {
         size: event.target.size.value,
         quantity: event.target.quantity.value,
         id: id
-      }, id);
+      });
   }
   return (
     <div className="form-container">
