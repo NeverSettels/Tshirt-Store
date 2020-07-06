@@ -16,10 +16,17 @@ export default (state = {}, action) => {
     case "BUY":
       const buyingState = { ...state }
       const bought = buyingState[id]
-      console.log(typeof parseInt(bought.quantity));
       return Object.assign({}, state, {
-        [id]: { ...bought, quantity: parseInt(quantity) - 1 }
+        [id]: { ...bought, quantity: bought.quantity - 1 }
       })
+
+    case "STOCK":
+      const stockState = { ...state }
+      const stocked = stockState[id]
+      return Object.assign({}, state, {
+        [id]: { ...stocked, quantity: parseInt(stocked.quantity) + 10 }
+      })
+
     default:
       return state;
   }

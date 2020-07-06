@@ -2,7 +2,6 @@ import React from 'react'
 
 export default function ShirtList(props) {
   const { shirtList, buy, stock, handleDelete, handleEditClick } = props
-  console.log(Object.values(shirtList));
 
   return (
     <>
@@ -10,7 +9,6 @@ export default function ShirtList(props) {
       <div className="shirt-container">
         {Object.values(shirtList).map(shirt => (
           <div className="shirt-card" key={shirt.id}>
-            {console.log(shirt.id)}
             <img src={shirt.img} alt={shirt.desc} />
             <div>
               <h3>{shirt.tshirt}</h3>

@@ -46,16 +46,12 @@ class ShirtControl extends Component {
   }
 
   stock = (id) => {
-    this.setState(state => {
-      const masterShirtList = state.masterShirtList.map(element => {
-        if (element.id === id) {
-          return { ...element, quantity: element.quantity + 10 }
-        } else {
-          return element
-        }
-      });
-      return { masterShirtList }
-    })
+    const { dispatch } = this.props
+    const action = {
+      type: "STOCK",
+      id
+    }
+    dispatch(action)
   }
 
   handleDelete = (id) => {
