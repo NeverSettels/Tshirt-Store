@@ -8,16 +8,17 @@ class ShirtControl extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formVisibleOnPage: false,
       editing: false,
       editId: null
     };
   }
 
   handleClick = () => {
-    this.setState(lastState => ({
-      formVisibleOnPage: !lastState.formVisibleOnPage
-    }));
+    const { dispatch } = this.props
+    const action = {
+      type: "TOGGLE_FORM"
+    }
+    dispatch(action)
   }
 
   // {...newShirt}={tshirt, price, img, desc, size, quantity}
@@ -28,7 +29,10 @@ class ShirtControl extends Component {
     //  const { tshirt, price, img, desc, size, quantity, id } = newShirt
     const action = { type: "ADD_TSHIRT", ...newShirt }
     dispatch(action);
-    this.setState({ formVisibleOnPage: false })
+    const action2 = {
+      type: 'TOGGLE_FORM'
+    }
+    dispatch(action2);
   }
 
   handleEditClick = (id) => {
@@ -66,36 +70,39 @@ class ShirtControl extends Component {
 
 
   handleEditingTicketInList = (shirtToEdit) => {
+    this.setState({ editing: false })
     const { dispatch } = this.props
-    //  const { tshirt, price, img, desc, size, quantity, id } = newShirt
     const action = { type: "ADD_TSHIRT", ...shirtToEdit }
     dispatch(action);
-    this.setState({ formVisibleOnPage: false, editing: false })
   }
 
   render() {
     let currentlyVisibleState = null;
-    let buttonText = null; // new code
-    if (this.state.formVisibleOnPage) {
+    let buttonText = null;
+    console.log("====>", this.props)
+    if (this.props.formVisibleOnPage) {
       currentlyVisibleState = <NewShirt onNewShirtCreation={this.onNewShirtCreation} />
-      buttonText = "cancel"; // new code
+      buttonText = "cancel";
     } else if (this.state.editing) {
       currentlyVisibleState = <NewShirt handleEditingTicketInList={this.handleEditingTicketInList} editing={this.state.editing} id={this.state.editId} />
       buttonText = "cancel";
     } else {
       currentlyVisibleState = <ShirtList shirtList={this.props.masterShirtList} buy={this.buy} stock={this.stock} handleDelete={this.handleDelete} handleEditClick={this.handleEditClick} />;
-      buttonText = "Add Shirt"; // new code
+      buttonText = "Add Shirt";
     }
     return (
       <React.Fragment>
         {currentlyVisibleState}
-        <button className={this.state.editing || this.state.formVisibleOnPage ? "delete" : "add"} onClick={this.handleClick}>{buttonText}</button>
+        <button className={this.state.editing || this.props.formVisibleOnPage ? "delete" : "add"} onClick={this.handleClick}>{buttonText}</button>
       </React.Fragment>
     );
   }
 }
 const mapStateToProps = state => {
-  return { masterShirtList: state }
+  return {
+    masterShirtList: state.masterShirtList,
+    formVisibleOnPage: state.formVisibleOnPage
+  }
 }
 ShirtControl = connect(mapStateToProps)(ShirtControl)
 export default ShirtControl
